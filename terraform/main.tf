@@ -1,5 +1,7 @@
 provider "aws" {
-  region = "us-east-1"
+  region     = "us-east-1"  # Substitua pela região onde deseja implantar os recursos
+  access_key = var.aws_access_key_id  # Chave de acesso AWS
+  secret_key = var.secret_access_key  # Chave secreta AWS
 }
 
 module "vpc" {
@@ -32,6 +34,7 @@ module "cdn" {
 
 module "observability" {
   source = "/modules/observability"
+  instance_id = module.ec2.instance_id
 }
 
 module "auto_scaling" {
@@ -51,3 +54,7 @@ variable "db_password" {
   default     = "your_default_password_here"  # Defina a senha do banco de dados aqui
 }
 
+module "lambda" {
+  source = "/modules/lambda"
+  cloudwatch_alarm_arn = module.cloudwatch.cloudwatch_alarm_arn
+}
