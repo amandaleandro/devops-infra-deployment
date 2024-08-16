@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: CI
 
 on:
   push:
@@ -11,32 +11,30 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14' # ou a versão necessária
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18' # Altere para a versão que você está usando
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: Run tests
-        run: npm test
-
-      - name: Create Git tag
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
-        run: |
+    - name: Run tests
+      run: npm test
+    - name: Create Git tag
+      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+      run: |
           TAG_NAME=$(echo "${GITHUB_REF##*/}")
-          echo "Tag Name: $TAG_NAME"
-          # Aqui você pode adicionar passos para fazer algo com a tag, se necessário
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
+          echo "Tag Name: $TAG_NAME"  
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
           name: build-artifacts
           path: |
             path/to/your/artifacts
