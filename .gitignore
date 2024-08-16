@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.idea/
+.vscode/
+*.log
+*.log.*
+*.log-*
+*.log/*
+terraform.tfstate
+terraform.tfstate.backup
+*.tfstate
+*.tfstate.backup
+*.tfvars
+*.tfplan
+*.tfout
+```
