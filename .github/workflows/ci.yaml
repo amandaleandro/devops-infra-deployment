@@ -26,14 +26,6 @@ jobs:
       - name: Run tests
         run: npm test
         
-      - name: Create Git tag
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          TAG_NAME=v$(date +'%Y%m%d%H%M%S')
-          echo "Creating tag $TAG_NAME"
-          git tag $TAG_NAME
-          git push origin $TAG_NAME
-
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
