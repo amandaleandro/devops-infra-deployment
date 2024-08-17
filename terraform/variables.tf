@@ -5,7 +5,7 @@ variable "region" {
 variable "db_password" {
   description = "Password for the RDS database"
   type        = string
-  default     = "your_default_password_here"  # Defina a senha do banco de dados aqui
+  default     = "your_default_password" 
 }
 
 variable "version" {
