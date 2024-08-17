@@ -1,4 +1,3 @@
-Aqui está uma estrutura de documentação para o projeto, sem incluir o Grafana e o Prometheus:
 
 ---
 
