@@ -1,6 +1,3 @@
-
----
-
 # **Documentação do Projeto de Infraestrutura DevOps**
 
 ## **Índice**
@@ -117,5 +114,3 @@ Uma função Lambda foi criada para destruir os recursos após 20 minutos de ina
 
 ## **10. Considerações Finais**
 Este projeto demonstra uma solução completa e automatizada para deploy de infraestrutura na AWS, com foco em segurança, escalabilidade e automação de processos.
-
----
