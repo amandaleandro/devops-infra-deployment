@@ -1,13 +1,13 @@
 ### **`ci_cd_guide.md`**
 
-```markdown
+
 # Guia de CI/CD
 
 ## Visão Geral
 Este guia explica a configuração do pipeline de CI/CD para o projeto usando GitHub Actions. O pipeline é dividido em duas partes: Integração Contínua (CI) e Deploy Contínuo (CD).
 
 ## Estrutura de Diretórios
-```
+```markdown
 ci-cd/
 ├── .github/
 │   └── workflows/
