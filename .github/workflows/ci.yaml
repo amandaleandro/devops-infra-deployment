@@ -18,15 +18,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Altere para a versão que você está usando
+          node-version: '18' 
 
       - name: Install dependencies
         run: npm install
 
       - name: Run tests
         run: npm test
-
-      # Se a intenção for criar uma tag para eventos de push
+        
       - name: Create Git tag
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
