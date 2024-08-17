@@ -1,90 +1,91 @@
-# Implementation Guide
+### **`implementation_guide.md`**
 
-## Introduction
-This guide provides a step-by-step process for implementing the DevOps infrastructure using Terraform. The project automates the deployment of a WordPress application on AWS with added features like scaling, observability, and secret management.
+## Introdução
+Este guia fornece um processo passo a passo para implementar a infraestrutura DevOps usando Terraform. O projeto automatiza o deploy de uma aplicação WordPress na AWS com recursos adicionais, como escalabilidade, observabilidade e gerenciamento de segredos.
 
-## Prerequisites
-Before starting, ensure you have the following installed and configured:
+## Pré-requisitos
+Antes de começar, certifique-se de ter os seguintes itens instalados e configurados:
 - [Terraform](https://www.terraform.io/downloads.html)
 - [AWS CLI](https://aws.amazon.com/cli/)
-- AWS credentials configured (`aws configure`)
-
-## Project Structure
-The project follows a modular structure for better management and scalability:
+- Credenciais da AWS configuradas (`aws configure`)
+```markdown
+## Estrutura do Projeto
+O projeto segue uma estrutura modular para melhor gerenciamento e escalabilidade:
 
 ├── terraform/
-│ ├── main.tf
-│ ├── variables.tf
-│ ├── outputs.tf
-│ ├── modules/
-│ │ ├── vpc/
-│ │ ├── ec2/
-│ │ ├── rds/
-│ │ ├── eks/
-│ │ ├── secrets/
-│ │ ├── auto_scaling/
-│ │ └── wordpress/
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+│   ├── modules/
+│   │   ├── vpc/
+│   │   ├── ec2/
+│   │   ├── rds/
+│   │   ├── eks/
+│   │   ├── secrets/
+│   │   ├── auto_scaling/
+│   │   └── wordpress/
 └── observability/
-├── function/
-├── lambda_function.py
-├── requirements.txt
-└── init.py
+    ├── function/
+        ├── lambda_function.py
+        ├── requirements.txt
+        └── __init__.py
+```
 
-bash
-Copiar código
+## Passos para o Deploy
 
-## Steps for Deployment
-
-### 1. Clone the Repository
-Clone the project repository to your local machine:
+### 1. Clonar o Repositório
+Clone o repositório do projeto para sua máquina local:
 ```bash
-git clone https://github.com/your-repo/devops-infra-deployment.git
+git clone https://github.com/seu-repo/devops-infra-deployment.git
 cd devops-infra-deployment/terraform
-2. Initialize Terraform
-Initialize the Terraform project to download provider plugins:
+```
 
-
+### 2. Inicializar o Terraform
+Inicialize o projeto Terraform para baixar os plugins dos provedores:
+```bash
 terraform init
-3. Review and Edit Variables
-Edit the variables.tf file or create a terraform.tfvars file to provide your custom values:
+```
 
-hcl
-Copiar código
+### 3. Revisar e Editar as Variáveis
+Edite o arquivo `variables.tf` ou crie um arquivo `terraform.tfvars` para fornecer seus valores personalizados:
+```hcl
 variable "db_password" {
-  description = "Password for the RDS database"
+  description = "Senha para o banco de dados RDS"
   type        = string
 }
 
 variable "aws_access_key_id" {
-  description = "AWS access key ID"
+  description = "ID de chave de acesso da AWS"
   type        = string
 }
 
 variable "secret_access_key" {
-  description = "AWS secret access key"
+  description = "Chave de acesso secreta da AWS"
   type        = string
 }
-4. Apply the Terraform Configuration
-Run the following command to deploy the infrastructure:
+```
 
-bash
-Copiar código
+### 4. Aplicar a Configuração do Terraform
+Execute o seguinte comando para fazer o deploy da infraestrutura:
+```bash
 terraform apply
-Confirm the apply by typing "yes" when prompted.
+```
+Confirme a aplicação digitando "yes" quando solicitado.
 
-5. Verify the Deployment
-Once the Terraform deployment is complete, you can verify the resources in your AWS Management Console.
+### 5. Verificar o Deploy
+Após a conclusão do deploy do Terraform, você pode verificar os recursos no Console de Gerenciamento da AWS.
 
-Infrastructure Components
-VPC: A Virtual Private Cloud with public and private subnets.
-EC2: Instances to host the WordPress application.
-RDS: A MySQL database for WordPress.
-EKS: A Kubernetes cluster for containerized workloads.
-Secrets Management: AWS Secrets Manager for secure management of credentials.
-Auto Scaling: Policies to manage scaling of resources based on demand.
-Monitoring and Cleanup
-The infrastructure includes CloudWatch alarms and a Lambda function that triggers automatic cleanup of resources after 20 minutes of inactivity.
+## Componentes da Infraestrutura
+- **VPC:** Uma Virtual Private Cloud com sub-redes públicas e privadas.
+- **EC2:** Instâncias para hospedar a aplicação WordPress.
+- **RDS:** Um banco de dados MySQL para o WordPress.
+- **EKS:** Um cluster Kubernetes para workloads containerizados.
+- **Gerenciamento de Segredos:** AWS Secrets Manager para gerenciamento seguro de credenciais.
+- **Auto Scaling:** Políticas para gerenciar a escalabilidade dos recursos conforme a demanda.
 
-Troubleshooting
-Terraform Errors: Check the Terraform output for specific errors and adjust the variables as needed.
-AWS Errors: Ensure your AWS credentials are correctly configured and have the necessary permissions.
+## Monitoramento e Cleanup
+A infraestrutura inclui alarmes do CloudWatch e uma função Lambda que dispara a limpeza automática dos recursos após 20 minutos de inatividade.
+
+## Solução de Problemas
+- **Erros no Terraform:** Verifique a saída do Terraform para erros específicos e ajuste as variáveis conforme necessário.
+- **Erros na AWS:** Certifique-se de que suas credenciais AWS estão configuradas corretamente e possuem as permissões necessárias.
