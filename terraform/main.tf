@@ -48,11 +48,6 @@ module "wordpress" {
   db_password = var.db_password
 }
 
-variable "db_password" {
-  description = "Password for the RDS database"
-  type        = string
-  default     = "your_default_password_here"  # Defina a senha do banco de dados aqui
-}
 
 module "lambda" {
   source = "/modules/lambda"
